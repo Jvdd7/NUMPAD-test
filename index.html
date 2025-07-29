@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
@@ -31,23 +41,18 @@
       text-align: left;
     }
 
-    input[type="number"],
     input[type="text"],
-    textarea {
+    input[type="number"] {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       font-size: 1em;
       border: 1px solid #ccc;
       border-radius: 5px;
       box-sizing: border-box;
     }
 
-    textarea {
-      resize: vertical;
-    }
-
     #display {
-      font-size: 2em;
+      font-size: 1.8em;
       text-align: right;
       margin-top: 5px;
     }
@@ -55,17 +60,17 @@
     .numpad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      max-width: 240px;
-      margin: 20px auto;
+      gap: 5px;
+      max-width: 200px;
+      margin: 15px auto;
     }
 
     .numpad button {
-      padding: 10px;
-      font-size: 1.2em;
+      padding: 8px;
+      font-size: 1em;
       background-color: #fff;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 4px;
       box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
       cursor: pointer;
     }
@@ -78,7 +83,7 @@
       background-color: #4CAF50;
       color: white;
       border: none;
-      padding: 12px 20px;
+      padding: 10px 16px;
       font-size: 1em;
       border-radius: 5px;
       cursor: pointer;
@@ -95,14 +100,11 @@
   <h1>Product Aantallen & Numpad</h1>
 
   <form id="productForm">
-    <label for="productA">Aantal Product A:</label>
-    <input type="number" id="productA" name="productA" required>
+    <label for="vanLocatie">Van Locatie:</label>
+    <input type="text" id="vanLocatie" name="vanLocatie" required>
 
-    <label for="productB">Aantal Product B:</label>
-    <input type="number" id="productB" name="productB" required>
-
-    <label for="productC">Aantal Product C:</label>
-    <input type="number" id="productC" name="productC" required>
+    <label for="ean">EAN:</label>
+    <input type="text" id="ean" name="ean" required>
 
     <label for="display">Aantal (via numpad):</label>
     <input type="text" id="display" readonly>
@@ -125,8 +127,8 @@
       <button type="button" onclick="decrementDisplay()">−</button>
     </div>
 
-    <label for="opmerkingOnder">Opmerking:</label>
-    <input type="text" id="opmerkingOnder" name="opmerkingOnder">
+    <label for="naarLocatie">Naar Locatie:</label>
+    <input type="text" id="naarLocatie" name="naarLocatie">
 
     <button type="submit" class="submit-button">Verzenden</button>
   </form>
@@ -150,11 +152,11 @@
 
     function confirmNumpad() {
       const display = document.getElementById("display");
-      const value = parseInt(display.value.trim());
-      if (!isNaN(value)) {
-        document.getElementById("productA").value = value;
+      const value = display.value.trim();
+      if (value) {
+        document.getElementById("display").value = value; // Zorg ervoor dat de waarde blijft staan
       }
-      document.getElementById("opmerkingOnder").focus();
+      document.getElementById("naarLocatie").focus();
     }
 
     function getOriginalValue() {
@@ -194,7 +196,7 @@
       }
     });
 
-    const fields = ["productA", "productB", "productC"];
+    const fields = ["vanLocatie", "ean"];
     fields.forEach((id, index) => {
       const input = document.getElementById(id);
       input.addEventListener("keydown", function (e) {
@@ -214,6 +216,11 @@
       alert("Formulier verzonden!");
     });
   </script>
+
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
 
 </body>
 </html>
